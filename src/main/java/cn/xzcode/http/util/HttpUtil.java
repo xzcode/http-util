@@ -1,4 +1,4 @@
-package com.sourcemuch.commons.http.util;
+package cn.xzcode.http.util;
 
 import java.io.File;
 import java.io.IOException;

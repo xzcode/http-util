@@ -1,4 +1,4 @@
-package com.sourcemuch.commons.http.util.exception;
+package cn.xzcode.http.util.exception;
 
 /**
  * 通用业务异常

@@ -2,7 +2,7 @@
 */build/
 .classpath
 .project
-*/bin/
+*/bin/*
 */build/
 */out/
 .settings
