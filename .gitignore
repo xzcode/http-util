@@ -3,6 +3,7 @@
 .classpath
 .project
 */bin/*
+*/bin/.gitignore
 */build/
 */out/
 .settings

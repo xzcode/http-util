@@ -1,4 +1,4 @@
-package cn.xzcode.http.util;
+package com.xzcode.http.util;
 
 import java.io.File;
 import java.io.IOException;

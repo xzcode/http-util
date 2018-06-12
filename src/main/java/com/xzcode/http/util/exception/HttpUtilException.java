@@ -1,4 +1,4 @@
-package cn.xzcode.http.util.exception;
+package com.xzcode.http.util.exception;
 
 /**
  * 通用业务异常
