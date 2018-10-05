@@ -9,8 +9,7 @@ version = "${version}"
 
 repositories {
 
-	maven {url "${nexusPublicUrl}"}
-	maven {url "${nexusSnapshotsUrl}"}
+	maven {url 'test'.equals(System.getProperty("profile")) ? "${testNexusPublicUrl}" : "${nexusPublicUrl}"}
 	mavenLocal()
 	mavenCentral()
 	jcenter()
@@ -26,7 +25,6 @@ dependencies {
 	
 }	
 
-//windows 下gradle默认使用GBK编码，如果项目中使用中文字符串或中文注释，build的时候会报错:'警告：编码 GBK 的不可映射字符'，添加下面的代码可以解决此问题
 tasks.withType(JavaCompile) {  
 	options.encoding = "UTF-8"  
 } 
@@ -35,7 +33,6 @@ task sourceJar(type: Jar) {
 	from sourceSets.main.allJava
 }
 
-//maven 内部仓库发布设置
 publishing {
     publications {
 	mavenJava(MavenPublication) {
@@ -54,15 +51,6 @@ publishing {
 		}
 	}
     }
-}
-
-
-//清除 gradle sourcemuch-commons 本地缓存
-task cleanGradleLocalCache  { 
-	doLast{ 
-		File file = new File("${getEnv('GRADLE_USER_HOME')}/caches/modules-2/files-2.1/sourcemuch-commons")
-		file.deleteDir()
-	}
 }
 
 
