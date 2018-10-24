@@ -61,6 +61,10 @@ public class HttpUtil{
 	 * 2018-04-12
 	 */
 	public String getForBody(String url) throws IOException {
+        return getForBody(url, (String)null);
+	}
+	
+	public String getForBody(String url, String charset) throws IOException {
 		
 		
 		Request request = new Request.Builder()
@@ -69,13 +73,19 @@ public class HttpUtil{
 				.build();
 		
 	    okhttp3.Response response = client.newCall(request).execute();
-        String body = response.body().string();
+        String body = null;
+        if (charset != null) {
+        	body = new String(response.body().bytes(), charset);
+		}else {
+			body = response.body().string();
+		}
         
+        /*
         if (logger.isDebugEnabled()) {
         	logger.debug("\ngetForBody:\nurl:{}\nbody:{}", url, body);
 		}
+        */
         return body;
-			
 	}
 	
 	public String getForBody(String url, Map<String, Object> params) throws IOException {
