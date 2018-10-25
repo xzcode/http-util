@@ -2,6 +2,8 @@
 	
 	apply plugin: 'java'
 	//apply plugin: 'eclipse'
+	
+	apply plugin: 'maven'
 	apply plugin: 'maven-publish'
 	
 	group = "${group}"
@@ -18,10 +20,7 @@
 		mavenLocal()
 	}
 	
-	jar {
-    	baseName = 'xz-http-util'
-    	//version = ""
-	}
+	archivesBaseName =  'xz-http-util'
 	
 	dependencies {
 	
@@ -44,7 +43,9 @@
 	publishing {
 	    publications {
 		mavenJava(MavenPublication) {
+            artifactId = jar.baseName
 		    from components.java
+		    //groupId = 'org.gradle.sample'
 		    artifact sourceJar {
 			classifier "sources"
 		    }
