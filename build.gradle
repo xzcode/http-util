@@ -21,7 +21,7 @@
 	jar {
     	baseName = 'xz-http-util'
     	//version = ""
-    }
+	}
 	
 	dependencies {
 	
