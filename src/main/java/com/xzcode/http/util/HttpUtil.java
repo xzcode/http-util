@@ -38,16 +38,20 @@ public class HttpUtil{
 	
 	private OkHttpClient client;
 	
-	public HttpUtil() {
-		init();
+	public HttpUtil(int connectTimeout, int writeTimeout, int readTimeout) {
+		init(connectTimeout, writeTimeout, readTimeout);
 	}
 	
-	public void init() {
+	public HttpUtil() {
+		init(10,30,30);
+	}
+	
+	public void init(int connectTimeout, int writeTimeout, int readTimeout) {
 		this.client = new OkHttpClient
 					.Builder()
-				    .connectTimeout(10, TimeUnit.SECONDS)
-				    .writeTimeout(30, TimeUnit.SECONDS)
-				    .readTimeout(30, TimeUnit.SECONDS)
+				    .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+				    .writeTimeout(writeTimeout, TimeUnit.SECONDS)
+				    .readTimeout(readTimeout, TimeUnit.SECONDS)
 				    .build();
 	}
 	
@@ -128,6 +132,40 @@ public class HttpUtil{
 		String body = getForBody(url, params);
 	            
         return gson.fromJson(body, t);
+	}
+	
+	/**
+	 * 获取json数据体并转为对象
+	 * @param url
+	 * @param params
+	 * @return
+	 * @throws IOException
+	 * 
+	 * @author zai
+	 * 2018-10-26 13:14:59
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getJsonForObject(String url, Map<String, Object> params) throws IOException {
+		
+		String body = getForBody(url, params);
+	            
+        return gson.fromJson(body, Map.class);
+	}
+	
+	/**
+	 * 获取json数据体并转为Map
+	 * @param url
+	 * @return
+	 * @throws IOException
+	 * 
+	 * @author zai
+	 * 2018-10-26 13:15:03
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getJsonForMap(String url) throws IOException {
+		
+		String body = getForBody(url, (Map<String, Object>)null);
+        return gson.fromJson(body, Map.class);
 	}
 	
 	/**
