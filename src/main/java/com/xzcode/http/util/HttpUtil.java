@@ -294,6 +294,46 @@ public class HttpUtil{
 	}
 	
 	/**
+	 * 上传文件
+	 * 
+	 * @param url
+	 * @param filekey
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @author zai
+	 * 2019-02-01 15:02:03
+	 */
+	public String uploadFile(
+			String url, 
+			String filekey, 
+			File file
+		) throws IOException {
+		return uploadFile(url, filekey, file.getName(), file);
+	}
+	
+	/**
+	 * 上传文件
+	 * 
+	 * @param url
+	 * @param filekey
+	 * @param filename
+	 * @param file
+	 * @return
+	 * @throws IOException
+	 * @author zai
+	 * 2019-02-01 15:02:11
+	 */
+	public String uploadFile(
+			String url, 
+			String filekey, 
+			String filename, 
+			File file
+		) throws IOException {
+		return uploadForBody(url, filekey, filename, file, "application/octet-stream", null, null);
+	}
+	
+	/**
 	 * 
 	 * @param url
 	 * @param filekey
