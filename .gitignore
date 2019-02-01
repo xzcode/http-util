@@ -2,7 +2,7 @@
 
 .classpath
 .project
-
+bin/
 /bin/
 */bin/
 
@@ -15,3 +15,4 @@
 .settings
 
 gradle-app.setting
+bin
